@@ -78,7 +78,7 @@ class LiquidPainter extends CustomPainter {
     path.close();
 
     // Subtle subtle shadow for depth
-    canvas.drawShadow(path, Colors.black.withOpacity(0.08), 8, true);
+    canvas.drawShadow(path, Colors.black.withAlpha(20), 8, true);
     canvas.drawPath(path, paint);
   }
 

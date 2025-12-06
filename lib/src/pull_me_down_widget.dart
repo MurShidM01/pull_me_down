@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/physics.dart';
 import 'package:flutter/services.dart';
 import 'dart:math' as math;
 
@@ -28,7 +27,7 @@ class PullMeDown extends StatefulWidget {
   final Widget? loadingIndicator;
 
   const PullMeDown({
-    Key? key,
+    super.key,
     required this.child,
     required this.onRefresh,
     this.refreshColor,
@@ -37,7 +36,7 @@ class PullMeDown extends StatefulWidget {
     this.refreshIndicatorExtent = 80.0,
     this.refreshIconColor,
     this.loadingIndicator,
-  }) : super(key: key);
+  });
 
   @override
   _PullMeDownState createState() => _PullMeDownState();

@@ -6,7 +6,7 @@ class LiquidSpinner extends StatefulWidget {
   const LiquidSpinner({Key? key, required this.color}) : super(key: key);
 
   @override
-  _LiquidSpinnerState createState() => _LiquidSpinnerState();
+  State<LiquidSpinner> createState() => _LiquidSpinnerState();
 }
 
 class _LiquidSpinnerState extends State<LiquidSpinner> with SingleTickerProviderStateMixin {
