@@ -9,7 +9,8 @@ class LiquidSpinner extends StatefulWidget {
   State<LiquidSpinner> createState() => _LiquidSpinnerState();
 }
 
-class _LiquidSpinnerState extends State<LiquidSpinner> with SingleTickerProviderStateMixin {
+class _LiquidSpinnerState extends State<LiquidSpinner>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
@@ -33,7 +34,12 @@ class _LiquidSpinnerState extends State<LiquidSpinner> with SingleTickerProvider
       animation: _controller,
       builder: (context, child) {
         return Transform.scale(
-          scale: 1.0 + (0.1 * math.sin(_controller.value * 2 * math.pi)), // Breathing effect
+          scale:
+              1.0 +
+              (0.1 *
+                  math.sin(
+                    _controller.value * 2 * math.pi,
+                  )), // Breathing effect
           child: CustomPaint(
             size: const Size(30, 30),
             painter: _SpinnerPainter(
@@ -57,9 +63,11 @@ class _SpinnerPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = size.center(Offset.zero);
     final radius = (size.width / 2) - 2;
-    
+
     // Determine contrast color
-    final spinnerColor = color.computeLuminance() > 0.5 ? Colors.black87 : Colors.white;
+    final spinnerColor = color.computeLuminance() > 0.5
+        ? Colors.black87
+        : Colors.white;
 
     final paint = Paint()
       ..color = spinnerColor
@@ -68,7 +76,7 @@ class _SpinnerPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     final rect = Rect.fromCircle(center: center, radius: radius);
-    
+
     // Native-like arc that grows and shrinks
     // We simulate this by rotating
     // A gap of 90 degrees

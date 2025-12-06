@@ -33,8 +33,8 @@ class PullMeDown extends StatefulWidget {
   /// The height (in pixels) that the indicator rests at while refreshing.
   /// Defaults to 80.0.
   final double refreshIndicatorExtent;
-  
-  /// Custom color for the icon/spinner. 
+
+  /// Custom color for the icon/spinner.
   /// If null, it adapts automatically to contrast with [refreshColor].
   final Color? refreshIconColor;
 
@@ -58,18 +58,19 @@ class PullMeDown extends StatefulWidget {
   State<PullMeDown> createState() => _PullMeDownState();
 }
 
-class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateMixin {
+class _PullMeDownState extends State<PullMeDown>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   // ignore: unused_field
   late Animation<double> _animation;
-  
+
   // The actual pull distance
   double _dragOffset = 0.0;
-  
+
   // State management
   bool _isRefreshing = false;
   bool _isSuccess = false;
-  
+
   // To track if we should reset
   // ignore: unused_field
   bool _isDragging = false;
@@ -78,10 +79,13 @@ class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateM
   void initState() {
     super.initState();
     _animationController = AnimationController(
-       vsync: this,
-       duration: const Duration(milliseconds: 600),
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
     );
-    _animation = CurvedAnimation(parent: _animationController, curve: Curves.elasticOut);
+    _animation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.elasticOut,
+    );
   }
 
   @override
@@ -92,17 +96,17 @@ class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateM
 
   Future<void> _handleRefresh() async {
     if (_isRefreshing) return;
-    
+
     HapticFeedback.mediumImpact();
 
     setState(() {
       _isRefreshing = true;
       _isSuccess = false;
     });
-    
+
     // Animate to proper position for loading
     await _animationController.animateTo(
-      1.0, 
+      1.0,
       duration: const Duration(milliseconds: 400),
       curve: Curves.elasticOut,
     );
@@ -119,7 +123,11 @@ class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateM
     } finally {
       if (mounted) {
         // Smooth closer
-        await _animationController.animateTo(0.0, duration: const Duration(milliseconds: 300), curve: Curves.easeInOutBack);
+        await _animationController.animateTo(
+          0.0,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOutBack,
+        );
         setState(() {
           _isRefreshing = false;
           _isSuccess = false;
@@ -134,7 +142,7 @@ class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateM
 
     if (notification is ScrollStartNotification) {
       if (notification.metrics.axis == Axis.vertical) {
-         _isDragging = true;
+        _isDragging = true;
       }
     }
 
@@ -142,27 +150,27 @@ class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateM
       if (notification.metrics.axis == Axis.vertical) {
         // Bouncing physics (iOS / BouncingScrollPhysics)
         if (notification.metrics.pixels < 0) {
-           setState(() {
-             _dragOffset = -notification.metrics.pixels;
-           });
+          setState(() {
+            _dragOffset = -notification.metrics.pixels;
+          });
         }
         // Reset check
         else if (notification.metrics.pixels > 0) {
-           if (_dragOffset > 0) {
-              setState(() {
-                _dragOffset = 0.0;
-              });
-           }
+          if (_dragOffset > 0) {
+            setState(() {
+              _dragOffset = 0.0;
+            });
+          }
         }
       }
     } else if (notification is OverscrollNotification) {
-       // Clamping physics (Android default)
-       if (notification.metrics.axis == Axis.vertical) {
+      // Clamping physics (Android default)
+      if (notification.metrics.axis == Axis.vertical) {
         if (notification.overscroll < 0) {
           setState(() {
-             _dragOffset += -notification.overscroll; 
+            _dragOffset += -notification.overscroll;
           });
-        } 
+        }
       }
     } else if (notification is ScrollEndNotification) {
       _isDragging = false;
@@ -185,8 +193,8 @@ class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateM
     final theme = Theme.of(context);
     final primaryColor = widget.refreshColor ?? theme.primaryColor;
 
-    final contentOffset = _isRefreshing 
-        ? widget.refreshIndicatorExtent 
+    final contentOffset = _isRefreshing
+        ? widget.refreshIndicatorExtent
         : (_dragOffset * 0.5); // Parallax factor
 
     return Stack(
@@ -210,7 +218,9 @@ class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateM
             child: IgnorePointer(
               child: CustomPaint(
                 painter: LiquidPainter(
-                  dragOffset: _isRefreshing ? widget.refreshIndicatorExtent : _dragOffset,
+                  dragOffset: _isRefreshing
+                      ? widget.refreshIndicatorExtent
+                      : _dragOffset,
                   color: primaryColor,
                   isRefreshing: _isRefreshing,
                   isSuccess: _isSuccess,
@@ -219,7 +229,11 @@ class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateM
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.only(
-                      top: (_isRefreshing ? widget.refreshIndicatorExtent : _dragOffset) * 0.4
+                      top:
+                          (_isRefreshing
+                              ? widget.refreshIndicatorExtent
+                              : _dragOffset) *
+                          0.4,
                     ),
                     child: _buildIcon(primaryColor),
                   ),
@@ -234,12 +248,13 @@ class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateM
   Widget _buildIcon(Color primaryColor) {
     if (_isSuccess) {
       // Just clean green state, no icon
-      return const SizedBox(); 
+      return const SizedBox();
     }
-    
+
     // Determine the icon color (Manual override -> High Contrast calc -> White default)
-    final iconColor = widget.refreshIconColor ?? 
-       (primaryColor.computeLuminance() > 0.5 ? Colors.black87 : Colors.white);
+    final iconColor =
+        widget.refreshIconColor ??
+        (primaryColor.computeLuminance() > 0.5 ? Colors.black87 : Colors.white);
 
     if (_isRefreshing) {
       // Allow custom widget or default to our LiquidSpinner
@@ -247,7 +262,10 @@ class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateM
     }
 
     // Pulling state
-    final percentage = (_dragOffset / widget.refreshTriggerPullDistance).clamp(0.0, 1.0);
+    final percentage = (_dragOffset / widget.refreshTriggerPullDistance).clamp(
+      0.0,
+      1.0,
+    );
     if (percentage < 0.15) return const SizedBox();
 
     return Opacity(
@@ -256,8 +274,8 @@ class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateM
         angle: percentage * 2 * math.pi, // Spin effect
         child: Icon(
           Icons.arrow_downward_rounded, // Changed to arrow for clarity
-          color: iconColor, 
-          size: 20 + (percentage * 8)
+          color: iconColor,
+          size: 20 + (percentage * 8),
         ),
       ),
     );
