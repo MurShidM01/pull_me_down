@@ -1,3 +1,9 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* **Initial Release** of `pull_me_down`! 🚀
+* Added **Liquid Elastic** pull-to-refresh animation.
+* implemented **Smart Spinner** with automatic contrast adjustment.
+* Added support for **Custom Loading Widgets** via `loadingIndicator`.
+* Added **Haptic Feedback** for a tactile experience.
+* Added support for **Android (Clamping)** and **iOS (Bouncing)** scroll physics.
+* Included comprehensive **Example App** with playground settings.

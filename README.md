@@ -6,8 +6,14 @@
 A **Stunning**, **Fluid**, and **Professional** Pull-to-Refresh package for Flutter. 
 Elevate your app's user experience with a **Liquid Elastic** animation that feels alive, minimal, and premium.
 
-![PullMeDown Demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDZmNXJ6b3J6b3J6b3J6b3J6b3J6b3J6b3J6b3J6b3J6b3J6/giphy.gif) 
-*(Note: Replace with your own GIF/Screenshot)*
+![PullMeDown Demo](https://raw.githubusercontent.com/MurShidM01/pull_me_down/main/screenshots/pull_me_down.gif)
+
+## 📸 Showcase
+
+| | | |
+|:---:|:---:|:---:|
+| ![1](https://raw.githubusercontent.com/MurShidM01/pull_me_down/main/screenshots/Screenshot%20(01).png) | ![2](https://raw.githubusercontent.com/MurShidM01/pull_me_down/main/screenshots/Screenshot%20(02).png) | ![3](https://raw.githubusercontent.com/MurShidM01/pull_me_down/main/screenshots/Screenshot%20(03).png) |
+| ![4](https://raw.githubusercontent.com/MurShidM01/pull_me_down/main/screenshots/Screenshot%20(04).png) | ![5](https://raw.githubusercontent.com/MurShidM01/pull_me_down/main/screenshots/Screenshot%20(05).png) | ![6](https://raw.githubusercontent.com/MurShidM01/pull_me_down/main/screenshots/Screenshot%20(06).png) |
 
 ## ✨ Why PullMeDown?
 
