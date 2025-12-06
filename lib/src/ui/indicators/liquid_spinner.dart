@@ -3,7 +3,7 @@ import 'dart:math' as math;
 
 class LiquidSpinner extends StatefulWidget {
   final Color color;
-  const LiquidSpinner({Key? key, required this.color}) : super(key: key);
+  const LiquidSpinner({super.key, required this.color});
 
   @override
   State<LiquidSpinner> createState() => _LiquidSpinnerState();

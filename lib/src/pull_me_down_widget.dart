@@ -11,11 +11,27 @@ typedef RefreshCallback = Future<void> Function();
 
 /// A creative and easy-to-use pull-to-refresh widget.
 class PullMeDown extends StatefulWidget {
+  /// The widget that will be wrapped and made scrollable/refreshable.
+  /// Usually a [ListView], [GridView], or [SingleChildScrollView].
   final Widget child;
+
+  /// The async callback function that is triggered when the refresh is activated.
+  /// This should return a [Future] that completes when the data is reloaded.
   final RefreshCallback onRefresh;
+
+  /// The main background color of the liquid indicator.
+  /// Defaults to [Theme.of(context).primaryColor] if not provided.
   final Color? refreshColor;
+
+  /// Optional background color for the container behind the indicator.
   final Color? backgroundColor;
+
+  /// The distance (in pixels) the user must pull down to trigger the refresh.
+  /// Defaults to 100.0.
   final double refreshTriggerPullDistance;
+
+  /// The height (in pixels) that the indicator rests at while refreshing.
+  /// Defaults to 80.0.
   final double refreshIndicatorExtent;
   
   /// Custom color for the icon/spinner. 
@@ -39,7 +55,7 @@ class PullMeDown extends StatefulWidget {
   });
 
   @override
-  _PullMeDownState createState() => _PullMeDownState();
+  State<PullMeDown> createState() => _PullMeDownState();
 }
 
 class _PullMeDownState extends State<PullMeDown> with SingleTickerProviderStateMixin {

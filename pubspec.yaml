@@ -1,6 +1,6 @@
 name: pull_me_down
-description: "A Creative Easy to Use Pull to Refresh Widget"
-version: 0.0.1
+description: "A professional, fluid, and customizable pull-to-refresh package for Flutter. Features a unique liquid elastic animation, haptic feedback, and smart spinner."
+version: 0.0.2
 homepage: https://github.com/MurShidM01/pull_me_down
 
 environment:
