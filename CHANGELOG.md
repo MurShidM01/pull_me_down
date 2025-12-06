@@ -1,7 +1,12 @@
+## 0.0.3
+
+* **Code Formatting**: Applied standard Dart formatting to all files.
+* **Pub Score**: Addressed remaining style issues for maximum score.
+
 ## 0.0.2
 
 * **Documentation Support**: Added comprehensive DartDocs for all public APIs.
-* **Analysis Fixes**: Resolved strict linting issues
+* **Analysis Fixes**: Resolved strict linting issues.
 * **Performance**: Optimized unused imports and deprecated API calls.
 
 ## 0.0.1
